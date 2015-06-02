@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A863B3DC-79DC-4C11-A557-EB32D92D51DF}</ProjectGuid>
+    <ProjectGuid>{178BB9A0-66A0-4207-9807-A923C91922BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TurboRango.Dominio</RootNamespace>
@@ -39,11 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categoria.cs" />
-    <Compile Include="Contato.cs" />
-    <Compile Include="Localizacao.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurante.cs" />
+    <Compile Include="Localizacao.cs" />
+    <Compile Include="Contato.cs" />
+    <Compile Include="Categoria.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
