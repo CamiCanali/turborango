@@ -194,3 +194,11 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+src/TurboRango/Importador.XML/App.config
+src/TurboRango/Importador.XML/Form1.Designer.cs
+src/TurboRango/Importador.XML/Form1.cs
+src/TurboRango/Importador.XML/Properties/AssemblyInfo.cs
+src/TurboRango/Importador.XML/Properties/Resources.Designer.cs
+src/TurboRango/Importador.XML/Properties/Resources.resx
+src/TurboRango/Importador.XML/Properties/Settings.Designer.cs
+src/TurboRango/Importador.XML/Properties/Settings.settings

@@ -28,53 +28,117 @@ namespace TurboRango.ImportadorXML
             var todos = restaurantesXML.TodosRestaurantes();
             #endregion
 
+            //#region ADO.NET
+            //var connString = @"Data Source=.;Initial Catalogo=TurboRango_dev;Integrated Security=True;";
+            ////UID=sa;PWD=feevale no local de integrated security
+            //var acessoAoBanco = new Importador.XML.Restaurantes(connString);
+            //acessoAoBanco.Inserir(new Contato
+            //{
+            //    Site = "www.dogao.gif",
+            //    Telefone = "555555" 
+            //});
+
+            //IEnumerable<Contato> contatos = acessoAoBanco.GetContato();
+            //#endregion
+
+            //#region Exercicios
+
+            //Restaurante restaurante = new Restaurante();
+
+            ////restaurante.
+            ////Console.Write(restaurante.Contato.Site);
+            //Console.WriteLine(
+            //    restaurante.Capacidade.HasValue ?
+            //        restaurante.Capacidade.Value.ToString() :
+            //        "oi"
+            //    );
+
+            //restaurante.Nome = string.Empty + " ";
+
+            //Console.WriteLine(restaurante.Nome ?? "Nulo!!!");
+
+            //Console.WriteLine(!string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "tem valor" : "não tem valor");
+
+            //var oQueEuGosto = "bacon";
+
+            //var texto = String.Format("Eu gosto de {0}", oQueEuGosto);
+            //// var texto = String.Format("Eu gosto de \{oQueEuGosto}");
+
+            //StringBuilder pedreiro = new StringBuilder();
+            //pedreiro.AppendFormat("Eu gosto de {0}", oQueEuGosto);
+            //pedreiro.Append("!!!!!!");
+
+            //object obj = "1";
+            //int a = Convert.ToInt32(obj);
+            //int convertido = 10;
+            //bool conseguiu = Int32.TryParse("1gdfgfd", out convertido);
+            //int res = 12 + a;
+
+            //Console.WriteLine(pedreiro);
+
+            //#endregion
+
             #region ADO.NET
-            var connString = @"Data Source=.;Initial Catalogo=TurboRango_dev;Integrated Security=True;";
-            //UID=sa;PWD=feevale no local de integrated security
-            var acessoAoBanco = new Importador.XML.CarinhaQueManipulaOBanco(connString);
+
+            var connString = @"Data Source=.;Initial Catalog=TurboRango_dev;Integrated Security=True;";
+
+            var acessoAoBanco = new Restaurantes(connString);
+
             acessoAoBanco.Inserir(new Contato
             {
-                Site = "www.dogao.gif",
-                Telefone = "555555" 
+                 Site = "www.dogao.gif",
+                 Telefone = "5555555"
             });
 
-            IEnumerable<Contato> contatos = acessoAoBanco.GetContato();
-            #endregion
+            IEnumerable<Contato> contatos = acessoAoBanco.GetContatos();
 
-            #region Exercicios
+            var restaurantes = new Restaurantes(connString);
 
-            Restaurante restaurante = new Restaurante();
+            var tiririca = new Restaurante
+            {
+                Nome = "Tiririca",
+                Capacidade = 50,
+                Categoria = Categoria.Fastfood,
+                Contato = new Contato
+                {
+                    Site = "http://github.com/tiririca",
+                    Telefone = "5555 5555"
+                },
+                Localizacao = new Localizacao
+                {
+                    Bairro = "Vila Nova",
+                    Logradouro = "ERS 239, 2755",
+                    Latitude = -29.6646122,
+                    Longitude = -51.1188255
+                }
+            };
 
-            //restaurante.
-            //Console.Write(restaurante.Contato.Site);
-            Console.WriteLine(
-                restaurante.Capacidade.HasValue ?
-                    restaurante.Capacidade.Value.ToString() :
-                    "oi"
-                );
+            restaurantes.Inserir(tiririca);
 
-            restaurante.Nome = string.Empty + " ";
+            foreach (var r in todos)
+            {
+                restaurantes.Inserir(r);
+            }
 
-            Console.WriteLine(restaurante.Nome ?? "Nulo!!!");
+            var todosBD = restaurantes.Todos();
+            var menorQue50 = todosBD.Where(x => x.Capacidade < 50);
+            var menorQue50Linq = from r in todosBD
+                                 where r.Capacidade < 50
+                                 select r;
 
-            Console.WriteLine(!string.IsNullOrEmpty(restaurante.Nome.Trim()) ? "tem valor" : "não tem valor");
+            // Atualizar dados do restaurante...
 
-            var oQueEuGosto = "bacon";
+            tiririca.Capacidade = 100;
+            tiririca.Nome = "Novo Tiririca Grill";
+            tiririca.Categoria = Categoria.Churrascaria;
+            tiririca.Contato.Site = "http://www.tiriricagrill.com.br";
+            tiririca.Contato.Telefone = "5544445555";
+            tiririca.Localizacao.Bairro = "Centro";
+            tiririca.Localizacao.Logradouro = "Avenida central";
+            tiririca.Localizacao.Latitude = -29.6646122;
+            tiririca.Localizacao.Longitude = -51.1188255;
 
-            var texto = String.Format("Eu gosto de {0}", oQueEuGosto);
-            // var texto = String.Format("Eu gosto de \{oQueEuGosto}");
-
-            StringBuilder pedreiro = new StringBuilder();
-            pedreiro.AppendFormat("Eu gosto de {0}", oQueEuGosto);
-            pedreiro.Append("!!!!!!");
-
-            object obj = "1";
-            int a = Convert.ToInt32(obj);
-            int convertido = 10;
-            bool conseguiu = Int32.TryParse("1gdfgfd", out convertido);
-            int res = 12 + a;
-
-            Console.WriteLine(pedreiro);
+            restaurantes.Atualizar(375, tiririca);
 
             #endregion
         }

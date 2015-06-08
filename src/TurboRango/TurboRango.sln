@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboRango.Dominio", "Turbo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboRango.Importador.XML", "Importador.XML\TurboRango.Importador.XML.csproj", "{7C3B6A47-4893-4FDE-85F0-AD5C8A05F04F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboRango.Web", "TurboRango.Web\TurboRango.Web.csproj", "{4F9AF0D4-16B4-4C83-8282-FC8F8B5D0EC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7C3B6A47-4893-4FDE-85F0-AD5C8A05F04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C3B6A47-4893-4FDE-85F0-AD5C8A05F04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C3B6A47-4893-4FDE-85F0-AD5C8A05F04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F9AF0D4-16B4-4C83-8282-FC8F8B5D0EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F9AF0D4-16B4-4C83-8282-FC8F8B5D0EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F9AF0D4-16B4-4C83-8282-FC8F8B5D0EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F9AF0D4-16B4-4C83-8282-FC8F8B5D0EC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
