@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<restaurantes>
+  <restaurante nome="GARFÃO RESTAURANTE E PIZZARIA" categoria="comum" capacidade="100">
+    <localizacao>
+      <logradouro>Rua Sete de Setembro, 1045 - Liberdade</logradouro>
+      <bairro>Liberdade</bairro>
+      <latitude>-29,712571</latitude>
+      <longitude>-51,13636</longitude>
+    </localizacao>
+    <contato>
+      <telefone>(51) 3587-7700</telefone>
+      <site>www.garfao.com</site>
+    </contato>
+  </restaurante>
+  <restaurante nome="SEMENTE" categoria="cozinhanatural" capacidade="40">
+    <localizacao>
+      <logradouro>Rua: Joaquim Pedro Soares, 633</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,6812707</latitude>
+      <longitude>-51,1272292</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3595-5258</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="OLÉ ARMAZÉM MEXICANO" categoria="cozinhamexicana" capacidade="30">
+    <localizacao>
+      <logradouro>Rua Gomes Portinho, 448</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,682078</latitude>
+      <longitude>-51,125199</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3279-8828</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="CHURRASCARIA PRIMAVERA" categoria="churrascaria" capacidade="110">
+    <localizacao>
+      <logradouro>BR 116, 2554, Km 31</logradouro>
+      <bairro>Primavera</bairro>
+      <latitude>-29,693741</latitude>
+      <longitude>-51,144554</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3595-8081</telefone>
+      <site>www.grupoprimaveranh.com.br</site>
+    </contato>
+  </restaurante>
+  <restaurante nome="SUSHI DAI" categoria="cozinhajaponesa" capacidade="40">
+    <localizacao>
+      <logradouro>Bagé, 149</logradouro>
+      <bairro>Boa Vista</bairro>
+      <latitude>-29,68942</latitude>
+      <longitude>-51,125224</longitude>
+    </localizacao>
+  </restaurante>
+  <restaurante nome="TAKESHI" categoria="cozinhajaponesa" capacidade="35">
+    <localizacao>
+      <logradouro>Rua Confraternização, 792</logradouro>
+      <bairro>Pátria Nova</bairro>
+      <latitude>-29,698669</latitude>
+      <longitude>-51,130195</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3066-6660</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="HAI SAIKÔ" categoria="cozinhajaponesa" capacidade="75">
+    <localizacao>
+      <logradouro>Rua Gomes Portinho, 730</logradouro>
+      <bairro>Mauá</bairro>
+      <latitude>-29,684873</latitude>
+      <longitude>-51,122252</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3593-5757</telefone>
+      <site>www.haisaiko.com.br</site>
+    </contato>
+  </restaurante>
+  <restaurante nome="PICA-PAU LANCHES" categoria="fastfood" capacidade="30">
+    <localizacao>
+      <logradouro>Rua: José do Patrocínio, 880</logradouro>
+      <bairro>Rio Branco</bairro>
+      <latitude>-29,68339</latitude>
+      <longitude>-51,135376</longitude>
+    </localizacao>
+    <contato>
+      <telefone>(51) 3593-8079</telefone>
+      <site>www.picapaulanches.com</site>
+    </contato>
+  </restaurante>
+  <restaurante nome="FOFINHO LANCHES" categoria="fastfood" capacidade="80">
+    <localizacao>
+      <logradouro>Rua General Osório, 312</logradouro>
+      <bairro>Hamburgo Velho</bairro>
+      <latitude>-29,688934</latitude>
+      <longitude>-51,137052</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35942512</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="RODA PIZZA GIRASSOL" categoria="pizzaria" capacidade="150">
+    <localizacao>
+      <logradouro>Joaquim Nabuco, 1099 Loja. 01</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,6829373</latitude>
+      <longitude>-51,1264753</longitude>
+    </localizacao>
+    <contato>
+      <telefone>3595-5766</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="LA CARBONERA" categoria="pizzaria" capacidade="135">
+    <localizacao>
+      <logradouro>Avenida Dr. Maurício Cardoso, 1904</logradouro>
+      <bairro>Hamburgo Velho</bairro>
+      <latitude>-29,6871764</latitude>
+      <longitude>-51,1217197</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35252020</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="PIZZARIA MASTROIANI" categoria="pizzaria" capacidade="140">
+    <localizacao>
+      <logradouro>Avenida Pedro Adams Filho, 4668</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,6915801</latitude>
+      <longitude>-51,1286563</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35948400</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="RESTAURANTE FIRENZE" categoria="comum" capacidade="200">
+    <localizacao>
+      <logradouro>Avenida Pedro Adams Filho, 4668</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,6828043</latitude>
+      <longitude>-51,1287372</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35822841</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="RESTAURANTE LOCATELLI" categoria="comum" capacidade="400">
+    <localizacao>
+      <logradouro>Rua Borges do Canto, 121</logradouro>
+      <bairro>Hamburgo Velho</bairro>
+      <latitude>-29,6756157</latitude>
+      <longitude>-51,1156472</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35276229</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="DEL PIETRO" categoria="comum" capacidade="115">
+    <localizacao>
+      <logradouro>Avenida Dr. Maurício Cardoso, 137</logradouro>
+      <bairro>Hamburgo Velho</bairro>
+      <latitude>-29,6747349</latitude>
+      <longitude>-51,1116387</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35813333</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="ADAMS PIZZARIA" categoria="pizzaria" capacidade="130">
+    <localizacao>
+      <logradouro>Avenida Pedro Adams Filho, 4466</logradouro>
+      <bairro>Industrial</bairro>
+      <latitude>-29,6933741</latitude>
+      <longitude>-51,1283531</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35823000</telefone>
+    </contato>
+  </restaurante>
+  <restaurante nome="RESTAURANTE HABITUÉ" categoria="comum" capacidade="90">
+    <localizacao>
+      <logradouro>Joaquim Nabuco, 1117</logradouro>
+      <bairro>Centro</bairro>
+      <latitude>-29,6829086</latitude>
+      <longitude>-51,1263546</longitude>
+    </localizacao>
+    <contato>
+      <telefone>35931602</telefone>
+    </contato>
+  </restaurante>
+</restaurantes>
