@@ -1,0 +1,39 @@
+﻿@using TurboRango.Web.Controllers;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Com fome?</h2>
+
+<h3>Sorteando entre @ViewBag.QtdRestaurantes restaurantes</h3>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/haversine")
+    <script>
+        var qtdRestaurantes = @ViewBag.QtdRestaurantes;
+        //alert(qtdRestaurantes);
+
+        navigator.geolocation.getCurrentPosition(
+            function success(resultado) {
+
+                var posicaoAtual = resultado.coords;
+
+                $.get('@Url.Action("Restaurantes", "Restaurantes")')
+                    .done(function(response) {
+                        response.restaurantes.forEach(function(r) {
+
+                            if (r.Localizacao !== null) {
+                                var distancia = haversine(posicaoAtual, { latitude: r.Localizacao.Latitude, longitude: r.Localizacao.Longitude }, {unit: 'km'});
+                                console.log(r.Nome, distancia);
+                            }
+
+                        });
+                    });
+            },
+            function error(err) {
+                console.error(err);
+            },
+            { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        );
+    </script>
+}

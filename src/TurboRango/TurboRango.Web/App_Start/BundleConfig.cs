@@ -26,6 +26,9 @@ namespace TurboRango.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/haversine").Include(
+                "~/Scripts/haversine.js"));
 #if DEBUG
             BundleTable.EnableOptimizations = false;
 #else
