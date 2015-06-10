@@ -1,17 +1,33 @@
 ﻿@using TurboRango.Web.Controllers;
 @{
     ViewBag.Title = "Index";
+    //ViewBag.QtdRestaurantes += 1;
 }
 
 <h2>Com fome?</h2>
 
-<h3>Sorteando entre @ViewBag.QtdRestaurantes restaurantes</h3>
+<h3 id="feedback">Sorteando entre @ViewBag.QtdRestaurantes restaurantes...</h3>
+@*<h3>@(SorteiosController.GetIluminismo() + 1)</h3>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/haversine")
     <script>
         var qtdRestaurantes = @ViewBag.QtdRestaurantes;
         //alert(qtdRestaurantes);
+
+        var feedback = $('#feedback');
+
+        var gerarRandomico = function (min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+
+        var distancia = function (coord1, coord2) {
+            return haversine(coord1, { latitude: coord2.Latitude, longitude: coord2.Longitude }, { unit: 'km' });
+        };
+
+        var round = function(n) {
+            return Math.round(n * 100) / 100;
+        };
 
         navigator.geolocation.getCurrentPosition(
             function success(resultado) {
@@ -20,14 +36,22 @@
 
                 $.get('@Url.Action("Restaurantes", "Restaurantes")')
                     .done(function(response) {
-                        response.restaurantes.forEach(function(r) {
 
-                            if (r.Localizacao !== null) {
-                                var distancia = haversine(posicaoAtual, { latitude: r.Localizacao.Latitude, longitude: r.Localizacao.Longitude }, {unit: 'km'});
-                                console.log(r.Nome, distancia);
+                        response.restaurantes.sort(function(r1, r2) {
+
+                            if (r1.Localizacao !== null && r2.Localizacao !== null) {
+                                var distancia1 = distancia(posicaoAtual, r1.Localizacao);
+                                var distancia2 = distancia(posicaoAtual, r2.Localizacao);
+                                return distancia1 > distancia2;
                             }
-
                         });
+
+                        var random = gerarRandomico(0, response.restaurantes.length);
+                        // sorteia de forma aleatória mas só escolhe entre os 10 mais próximos
+                        var escolhido = response.restaurantes[random % 10];
+                        feedback.text(escolhido.Nome + ' ' + round(distancia(posicaoAtual, escolhido.Localizacao)) + ' km');
+
+                        console.log(response.restaurantes);
                     });
             },
             function error(err) {
@@ -35,5 +59,7 @@
             },
             { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
         );
+
+
     </script>
 }
