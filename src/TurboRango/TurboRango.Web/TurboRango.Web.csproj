@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201506111820510_Teste.Designer.cs">
       <DependentUpon>201506111820510_Teste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506112046268_Classificacao.cs" />
+    <Compile Include="Migrations\201506112046268_Classificacao.Designer.cs">
+      <DependentUpon>201506112046268_Classificacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506111820510_Teste.resx">
       <DependentUpon>201506111820510_Teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506112046268_Classificacao.resx">
+      <DependentUpon>201506112046268_Classificacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
