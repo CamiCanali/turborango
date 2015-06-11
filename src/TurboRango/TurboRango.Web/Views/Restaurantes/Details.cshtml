@@ -1,4 +1,7 @@
-﻿@model TurboRango.Dominio.Restaurante
+﻿@using TurboRango.Dominio
+@using TurboRango.Dominio.Utils
+
+@model Restaurante
 
 @{
     ViewBag.Title = "Details";
@@ -31,7 +34,18 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Categoria)
+            @{
+                var enumDescription = Model.Categoria.GetDescription<Categoria>();
+            }
+            @Html.DisplayFor(model => enumDescription)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contato)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao)
         </dd>
 
     </dl>

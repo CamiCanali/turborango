@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TurboRango.Dominio
 {
-    public class Classificacao : Entidade
+    public class Classificacao
     {
         public double Nota { get; set; }
         public Categoria Categoria { get; set; }

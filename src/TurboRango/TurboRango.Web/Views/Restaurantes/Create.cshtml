@@ -1,4 +1,6 @@
-﻿@model TurboRango.Dominio.Restaurante
+﻿@using TurboRango.Dominio
+@using TurboRango.Dominio.Utils
+@model Restaurante
 
 @{
     ViewBag.Title = "Create";
@@ -38,6 +40,9 @@
                 @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @Html.EditorFor(m => m.Contato)
+        @Html.EditorFor(m => m.Localizacao)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
