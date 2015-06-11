@@ -11,6 +11,7 @@
         public Localizacao Localizacao { get; set; }
         public Categoria Categoria { get; set; }
 
+        public Classificacao Classificacao { get; set; }
         /*
         /// <summary>
         /// 
