@@ -9,27 +9,30 @@ namespace TurboRango.ImportadorXML
 {
     public class Restaurantes
     {
-        readonly static string INSERT_SQL = "INSERT INTO [dbo].[Restaurante] ([Capacidade],[Nome],[Categoria],[ContatoId],[LocalizacaoId]) VALUES (@Capacidade, @Nome, @Categoria, @ContatoId, @LocalizacaoId);";
+        readonly static string INSERT_SQL = "INSERT INTO [dbo].[Restaurante] ([Capacidade],[Nome],[Categoria],[ContatoId],[LocalizacaoId], [ClassificacaoId]) VALUES (@Capacidade, @Nome, @Categoria, @ContatoId, @LocalizacaoId, @ClassificacaoId);";
         readonly static string DELETE_SQL = "DELETE [dbo].[Restaurante] WHERE [Id] = @Id";
-        readonly static string SELECT_FKS = "SELECT [ContatoId], [LocalizacaoId] FROM [dbo].[Restaurante] WITH (nolock) WHERE [Id] = @Id";
-        readonly static string SELECT_JOINS = "SELECT r.*, c.*, l.* FROM [dbo].[Restaurante] r INNER JOIN dbo.[Contato] c on r.ContatoId = c.Id INNER JOIN dbo.[Localizacao] l on r.LocalizacaoId = l.Id";
+        readonly static string SELECT_FKS = "SELECT [ContatoId], [LocalizacaoId], [ClassificacaoId] FROM [dbo].[Restaurante] WITH (nolock) WHERE [Id] = @Id";
+        readonly static string SELECT_JOINS = "SELECT r.*, c.*, l.*, a.* FROM [dbo].[Restaurante] r INNER JOIN dbo.[Contato] c on r.ContatoId = c.Id INNER JOIN dbo.[Localizacao] l on r.LocalizacaoId = l.Id INNER JOIN dbo.[Classificacao] a on r.ClassificacaoId = a.Id";
         readonly static string UPDATE_SQL = "UPDATE [dbo].[Restaurante] SET [Capacidade] = @Capacidade, [Nome] = @Nome, [Categoria] = @Categoria WHERE [Id] = @Id";
 
         string ConnectionString { get; set; }
         Contatos ListaContatos { get; set; }
         Localizacoes ListaLocalizacoes { get; set; }
+        Classificacoes ListaClassificacoes { get; set; }
 
         public Restaurantes(string connectionString)
         {
             this.ConnectionString = connectionString;
             this.ListaContatos = new Contatos(connectionString);
             this.ListaLocalizacoes = new Localizacoes(connectionString);
+            this.ListaClassificacoes = new Classificacoes(connectionString);
         }
 
         internal void Inserir(Restaurante restaurante)
         {
             int novoContato = ListaContatos.Inserir(restaurante.Contato);
             int novaLocalizacao = ListaLocalizacoes.Inserir(restaurante.Localizacao);
+            int novaClassificacao = ListaClassificacoes.Inserir(restaurante.Classificacao);
             ExecutarSQLInsert(restaurante, novoContato, novaLocalizacao);
         }
 
@@ -41,7 +44,7 @@ namespace TurboRango.ImportadorXML
 
                 DataTable tabela = new DataTable();
 
-                int contatoId, localizacaoId;
+                int contatoId, localizacaoId, classificacaoId;
 
                 using (var selectFks = new SqlCommand(SELECT_FKS, connection))
                 {
@@ -50,6 +53,7 @@ namespace TurboRango.ImportadorXML
 
                     contatoId = Convert.ToInt32(tabela.Rows[0]["ContatoId"]);
                     localizacaoId = Convert.ToInt32(tabela.Rows[0]["LocalizacaoId"]);
+                    classificacaoId = Convert.ToInt32(tabela.Rows[0]["ClassificacaoId"]);
                 }
 
                 using (var transaction = connection.BeginTransaction())
@@ -62,6 +66,7 @@ namespace TurboRango.ImportadorXML
 
                     ListaContatos.Remover(contatoId);
                     ListaLocalizacoes.Remover(localizacaoId);
+                    ListaClassificacoes.Remover(classificacaoId);
                 }
             }
         }
@@ -74,7 +79,7 @@ namespace TurboRango.ImportadorXML
 
                 DataTable tabela = new DataTable();
 
-                int contatoId, localizacaoId;
+                int contatoId, localizacaoId, classificacaoId;
 
                 using (var selectFks = new SqlCommand(SELECT_FKS, connection))
                 {
@@ -83,10 +88,12 @@ namespace TurboRango.ImportadorXML
 
                     contatoId = Convert.ToInt32(tabela.Rows[0]["ContatoId"]);
                     localizacaoId = Convert.ToInt32(tabela.Rows[0]["LocalizacaoId"]);
+                    classificacaoId = Convert.ToInt32(tabela.Rows[0]["ClassificacaoId"]);
                 }
 
                 ListaContatos.Atualizar(contatoId, restaurante.Contato);
                 ListaLocalizacoes.Atualizar(localizacaoId, restaurante.Localizacao);
+                ListaClassificacoes.Atualizar(classificacaoId, restaurante.Classificacao);
 
                 using (var atualizarRestaurante = new SqlCommand(UPDATE_SQL, connection))
                 {
@@ -128,6 +135,10 @@ namespace TurboRango.ImportadorXML
                                 Logradouro = Convert.ToString(linha["Logradouro"]),
                                 Latitude = Convert.ToDouble(linha["Latitude"]),
                                 Longitude = Convert.ToDouble(linha["Longitude"])
+                            },
+                            Classificacao = new Classificacao{
+                                Nota = Convert.ToDouble(linha["Nota"]),
+                                MediaNota = Convert.ToDouble(linha["MediaNota"]),
                             }
                         };
                     }
@@ -146,6 +157,7 @@ namespace TurboRango.ImportadorXML
                     inserirRestaurante.Parameters.Add("@Categoria", SqlDbType.NVarChar).Value = restaurante.Categoria.ToString();
                     inserirRestaurante.Parameters.Add("@ContatoId", SqlDbType.Int).Value = fkNovoContato;
                     inserirRestaurante.Parameters.Add("@LocalizacaoId", SqlDbType.Int).Value = fkNovaLocalizacao;
+                    inserirRestaurante.Parameters.Add("@ClassificacaoId", SqlDbType.Int).Value = fkNovaLocalizacao;
                     connection.Open();
                     inserirRestaurante.ExecuteNonQuery();
                 }
@@ -265,6 +277,64 @@ namespace TurboRango.ImportadorXML
                         atualizarContato.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                         connection.Open();
                         atualizarContato.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        class Classificacoes
+        {
+            readonly static string INSERT_SQL = "INSERT INTO [dbo].[Classificacao] ([Nota],[MediaNota], [DataAvaliacao]) VALUES (@Nota, @MediaNota, @DataAvaliacao); SELECT @@IDENTITY";
+            readonly static string DELETE_SQL = "DELETE [dbo].[Classificacao] WHERE [Id] = @Id";
+            readonly static string UPDATE_SQL = "UPDATE [dbo].[Classificacao] SET [Nota] = @Nota, [MediaNota] = @MediaNota, [DataAvaliacao] = @DataAvaliacao WHERE [Id] = @Id";
+
+            string ConnectionString { get; set; }
+
+            internal Classificacoes(string connString)
+            {
+                ConnectionString = connString;
+            }
+
+            internal int Inserir(Classificacao classificacao)
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    using (var inserirClassificacao = new SqlCommand(INSERT_SQL, connection))
+                    {
+                        inserirClassificacao.Parameters.Add("@Nota", SqlDbType.Float).Value = classificacao.Nota;
+                        inserirClassificacao.Parameters.Add("@MediaNota", SqlDbType.Float).Value = classificacao.calculaMedia();
+                        inserirClassificacao.Parameters.Add("@DataAvaliacao", SqlDbType.DateTime).Value = classificacao.DataAvaliacao;
+                        connection.Open();
+                        return Convert.ToInt32(inserirClassificacao.ExecuteScalar());
+                    }
+                }
+            }
+
+            internal void Remover(int id)
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    using (var removerClassificacao = new SqlCommand(DELETE_SQL, connection))
+                    {
+                        removerClassificacao.Parameters.Add("@Id", SqlDbType.NVarChar).Value = id;
+                        connection.Open();
+                        removerClassificacao.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            internal void Atualizar(int id, Classificacao classificacao)
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    using (var atualizarClassificacao = new SqlCommand(UPDATE_SQL, connection))
+                    {
+                        atualizarClassificacao.Parameters.Add("@Nota", SqlDbType.Float).Value = classificacao.Nota;
+                        atualizarClassificacao.Parameters.Add("@MediaNota", SqlDbType.Float).Value = classificacao.MediaNota;
+                        atualizarClassificacao.Parameters.Add("@DataAvaliacao", SqlDbType.DateTime).Value = classificacao.DataAvaliacao;
+                        atualizarClassificacao.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                        connection.Open();
+                        atualizarClassificacao.ExecuteNonQuery();
                     }
                 }
             }

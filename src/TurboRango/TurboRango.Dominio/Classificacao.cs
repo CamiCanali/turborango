@@ -9,7 +9,13 @@ namespace TurboRango.Dominio
     public class Classificacao : Entidade
     {
         public double Nota { get; set; }
-        public Categoria Categoria { get; set; }
+        public double MediaNota { get; set; }
+        //public Categoria Categoria { get; set; }
         public DateTime DataAvaliacao { get; set; }
+
+        public double calculaMedia()
+        {
+            return MediaNota = (MediaNota + Nota) / 2;
+        }
     }
 }
