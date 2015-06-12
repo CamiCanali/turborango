@@ -18,8 +18,8 @@ namespace TurboRango.Web.Controllers
         {
             var restaurantes = db.Restaurantes
                 .Include(x => x.Contato)
-                .Include(x => x.Localizacao)
-                .Include(x => x.Classificacao);
+                .Include(x => x.Localizacao);
+               // .Include(x => x.Classificacao);
             return View(restaurantes.ToList());
         }
 
@@ -143,7 +143,7 @@ namespace TurboRango.Web.Controllers
             return db.Restaurantes
                 .Include(x => x.Localizacao)
                 .Include(x => x.Contato)
-                .Include(x => x.Classificacao)
+                //.Include(x => x.Classificacao)
                 .FirstOrDefault(x => x.Id == id);
         }
 

@@ -174,7 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Classificacoes.cs" />
+    <Compile Include="Controllers\ClassificacoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Controllers\SorteiosController.cs" />
@@ -189,13 +189,9 @@
     <Compile Include="Migrations\201506081947023_CriarEntidades.Designer.cs">
       <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506111820510_Teste.cs" />
-    <Compile Include="Migrations\201506111820510_Teste.Designer.cs">
-      <DependentUpon>201506111820510_Teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506112046268_Classificacao.cs" />
-    <Compile Include="Migrations\201506112046268_Classificacao.Designer.cs">
-      <DependentUpon>201506112046268_Classificacao.cs</DependentUpon>
+    <Compile Include="Migrations\201506121134244_criarClassificacao.cs" />
+    <Compile Include="Migrations\201506121134244_criarClassificacao.Designer.cs">
+      <DependentUpon>201506121134244_criarClassificacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +253,11 @@
     <Content Include="Views\Shared\EditorTemplates\Localizacao.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Contato.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Localizacao.cshtml" />
+    <Content Include="Views\Classificacoes\Create.cshtml" />
+    <Content Include="Views\Classificacoes\Edit.cshtml" />
+    <Content Include="Views\Classificacoes\Delete.cshtml" />
+    <Content Include="Views\Classificacoes\Details.cshtml" />
+    <Content Include="Views\Classificacoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,11 +282,8 @@
     <EmbeddedResource Include="Migrations\201506081947023_CriarEntidades.resx">
       <DependentUpon>201506081947023_CriarEntidades.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506111820510_Teste.resx">
-      <DependentUpon>201506111820510_Teste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506112046268_Classificacao.resx">
-      <DependentUpon>201506112046268_Classificacao.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506121134244_criarClassificacao.resx">
+      <DependentUpon>201506121134244_criarClassificacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

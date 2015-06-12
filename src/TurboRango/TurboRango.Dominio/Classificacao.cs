@@ -11,8 +11,8 @@ namespace TurboRango.Dominio
         public double Nota { get; set; }
         public double MediaNota { get; set; }
         //public Categoria Categoria { get; set; }
+        //public virtual Restaurante restaurante;
         public DateTime DataAvaliacao { get; set; }
-
         public double calculaMedia()
         {
             return MediaNota = (MediaNota + Nota) / 2;
